@@ -1,0 +1,33 @@
+# Build
+bin/
+obj/
+*.exe
+*.dll
+ 
+# Visual Studio / VS Code
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+*.userosscache
+.vs/
+ 
+# Configurações e arquivos locais
+appsettings.Development.json
+secrets.json
+*.env
+*.pfx
+*.key
+*.cer
+*.log
+ 
+# Sistema operacional
+.DS_Store
+Thumbs.db
+ 
+# Pacotes NuGet
+*.nupkg
+*.snupkg
+ 
+# Logs
+*.log
