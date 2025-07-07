@@ -1,123 +1,38 @@
-@model ConexaoSolidaria.Models.Usuario
+@model List<Usuario>
 @{
-    ViewData["Title"] = "Cadastrar Morador de Rua";
+    ViewData["Title"] = "Lista de moradores cadastrados";
 }
 <h1>@ViewData["Title"]</h1>
 
-<div class="container">
-    @if (Model != null)
-{
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">@Model.NomeCompleto</h5>
-            <p class="card-text">Email: @Model.NomeMae]</p>
-            <p class="card-text">ID: @Model.Id</p>
-        </div>
-    </div>
-}
-else
-{
-    <p>Nenhum usuário encontrado.</p>
-}
-    
-    </div>
-    <br/><br />
-   <br/><br />
+<a asp-controller="Usuario" asp-action="CadastrarMoradorRua" class="btn btn-primary">
+    Cadastrar novo
+</a>
+<br /><br />
+<table class="table table-bordered">
+    <thead>
 
-<div class="container">
-
-    <form asp-action="CadastroMoradorRua" method="post">
-        <div class="row">
-            <h4>Dados pessoais</h4>
-            <div class="col-md-6">
-                <label class="form-label">Nome completo </label>
-                <input class="form-control" type="text" />
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Data de nascimento </label>
-                <input class="form-control" type="date" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">CPF </label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">RG</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Telefone fixo </label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Celular</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Nome mae</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Foto</label>
-                <input class="form-control" type="file" />
-            </div>
-
-        </div>
-        <br /><br />
-        <div class="row">
-            <h4>Compisição familiar</h4>
-            <div class="col-md-6">
-                <label class="form-label">Número de pessoas na família</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Endereço de referencia</label>
-                <input class="form-control" type="text" />
-            </div>
-
-        </div>
-        <br /><br />
-        <div class="row">
-            <h4>Situação de Rua</h4>
-            <div class="col-md-6">
-                <label class="form-label">Tempo de permanência em situação de rua</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Motivo da situação de rua (se souber)</label>
-                <input class="form-control" type="text" />
-            </div>
-
-        </div>
-        <br /><br />
-        <div class="row">
-            <h4>Renda e trabalho</em></h4>
-            <div class="col-md-6">
-                <label class="form-label">Renda de cada membro da família (mesmo que informal)</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Profissão</label>
-                <input class="form-control" type="text" />
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Participação em programas sociais</label>
-                <input class="form-control" type="text" />
-            </div>
-        </div>
-
-
-        <br /><br />
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-</div>
+        <tr>
+            <th>Nome</th>
+            <th>Data nascimento</th>
+            <th>Telefone</th>
+            <th>Excluir</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.NomeCompleto</td>
+                <td>@u.DataNascimento</td>
+                <td>@u.TelefoneCelular</td>
+                <td><a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@u.Id" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">
+                        Excluir
+                    </a></td>
+                <td><a asp-controller="Usuario" asp-action="Editar" asp-route-id="@u.Id" class="btn btn-warning">
+                        Editar
+                    </a></td>
+            </tr>
+        }
+    </tbody>
+</table>

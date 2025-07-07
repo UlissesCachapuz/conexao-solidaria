@@ -20,7 +20,7 @@ namespace ConexaoSolidaria.Controllers
         [HttpGet]
         public IActionResult CadastroMoradorRua()
         {
-            var usuario = _context.Usuarios.FirstOrDefault(); // retorna o primeiro ou null
+            var usuario = _context.Usuarios.ToList();
             return View(usuario);
             //return View();
         }
@@ -30,28 +30,61 @@ namespace ConexaoSolidaria.Controllers
         [HttpPost]
         public IActionResult CadastroMoradorRua(Usuario usuario)
         {
-            /*if (ModelState.IsValid)
-            {
-                _context.Usuarios.Add(usuario);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }*/
 
-            var user = new Usuario
-            {
-                NomeCompleto = "João",
-                NomeMae = "maria ",
-                DataNascimento = "01/01/1990"
-            };
-            _context.Usuarios.Add(user);
+            _context.Usuarios.Add(usuario);
             _context.SaveChanges();
 
             return Content("Usuário salvo com sucesso!");
 
+            //return View();
+        }
+
+        [HttpGet("CadastrarMoradorRua")]
+        public IActionResult CadastrarMoradorRua()
+        {
             return View();
         }
 
 
+        [HttpGet("Excluir")]
+        public IActionResult Excluir(int id)
+        {
+            var usuario = _context.Usuarios.Find(id);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            _context.Usuarios.Remove(usuario);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet("Editar")]
+        public IActionResult Editar(int id)
+        {
+            var usuario = _context.Usuarios.Find(id);
+
+            if (usuario == null)
+                return NotFound();
+
+            return View(usuario);
+        }
+        [HttpPost("Editar")]
+        public IActionResult Editar(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Usuarios.Update(usuario);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(usuario);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

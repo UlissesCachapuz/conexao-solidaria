@@ -1,0 +1,27 @@
+@model Usuario
+
+<h2>Editar Usuário</h2>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="NomeCompleto" class="form-label"></label>
+        <input asp-for="NomeCompleto" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DataNascimento" class="form-label"></label>
+        <input asp-for="DataNascimento" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TelefoneCelular" class="form-label"></label>
+        <select asp-for="TelefoneCelular" class="form-select">
+            <option value="Administrador">Administrador</option>
+            <option value="Padrão">Padrão</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+</form>
