@@ -34,7 +34,7 @@ namespace ConexaoSolidaria.Controllers
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
 
-            return Content("Usuário salvo com sucesso!");
+            return RedirectToAction("Index");
 
             //return View();
         }
