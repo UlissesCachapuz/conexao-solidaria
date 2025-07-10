@@ -1,6 +1,8 @@
 using ConexaoSolidaria.Models;
 using Microsoft.AspNetCore.Mvc;
 using ConexaoSolidaria.Data;
+using System.Globalization;
+//var apiKey = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImRjZjJhZWY2MTI3ODRiZTA5ZWZjMmViNTc4MWU4ODZlIiwiaCI6Im11cm11cjY0In0='; // crie uma em https://openrouteservice.org/dev/#/signup
 
 namespace ConexaoSolidaria.Controllers
 {
@@ -42,8 +44,13 @@ namespace ConexaoSolidaria.Controllers
             {
                 _context.Pessoas.Add(pessoa);
                 _context.SaveChanges();
-
-                return RedirectToAction("Pessoas");
+                //return RedirectToAction("Pessoas");
+                return RedirectToAction("PessoaMapa", new
+                {
+                    necessidade = pessoa.Necessidade,
+                    lat = pessoa.Latitude,
+                    lng = pessoa.Longitude
+                });
             }
 
         }
@@ -85,7 +92,31 @@ namespace ConexaoSolidaria.Controllers
 
             return View(pessoa);
         }
+        [HttpGet]
+        public IActionResult PessoaMapa(string necessidade, double lat, double lng)
+        {
+            var destino = ObterMaisProximo(necessidade, lat, lng);
 
+            if (destino == null)
+                return Content("Nenhum ponto de apoio encontrado.");
+
+            ViewBag.Necessidade = necessidade;
+            ViewBag.OrigemLat = lat.ToString(CultureInfo.InvariantCulture);
+            ViewBag.OrigemLng = lng.ToString(CultureInfo.InvariantCulture);
+            ViewBag.DestinoLat = destino.Latitude.ToString(CultureInfo.InvariantCulture);
+            ViewBag.DestinoLng = destino.Longitude.ToString(CultureInfo.InvariantCulture);
+            ViewBag.DestinoNome = destino.Nome;
+
+            return View();
+        }
+
+        private PontoApoio ObterMaisProximo(string necessidade, double lat, double lng)
+        {
+            return _context.PontosApoio
+                .Where(p => p.Tipo == necessidade)
+                .OrderBy(p => Math.Pow(p.Latitude - lat, 2) + Math.Pow(p.Longitude - lng, 2))
+                .FirstOrDefault();
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

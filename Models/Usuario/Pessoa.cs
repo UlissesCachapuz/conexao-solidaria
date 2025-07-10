@@ -17,7 +17,10 @@ namespace ConexaoSolidaria.Models
         public string? Profissao { get; set; }
         public string? ProgramaSocial { get; set; }
         public string? TempoPermanenciaRua { get; set; }
-
         public string? MotivoSituacaoRua { get; set; }
+        public string? Latitude { get; set; }
+        public string? Longitude { get; set; }
+        public string? Necessidade { get; set; }
+        public string? Tipo { get; set; } 
     }
 }

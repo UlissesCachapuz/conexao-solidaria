@@ -10,7 +10,7 @@
         <div class="row">
             <h4>Dados pessoais</h4>
             <div class="col-md-6">
-                <label asp-for="NomeCompleto"  class="form-label">Nome completo </label>
+                <label asp-for="NomeCompleto" class="form-label">Nome completo </label>
                 <input asp-for="NomeCompleto" class="form-control" type="text" />
             </div>
             <div class="col-md-6">
@@ -40,11 +40,11 @@
 
             <div class="col-md-6">
                 <label asp-for="NomeMae" class="form-label">Nome mae</label>
-                <input  asp-for="NomeMae" class="form-control" type="text" />
+                <input asp-for="NomeMae" class="form-control" type="text" />
             </div>
 
             <div class="col-md-6">
-                <label  asp-for="Foto" class="form-label">Foto</label>
+                <label asp-for="Foto" class="form-label">Foto</label>
                 <input asp-for="Foto" class="form-control" type="file" />
             </div>
 
@@ -59,7 +59,7 @@
 
             <div class="col-md-6">
                 <label asp-for="EnderecoReferencia" class="form-label">Endereço de referencia</label>
-                <input  asp-for="EnderecoReferencia" class="form-control" type="text" />
+                <input asp-for="EnderecoReferencia" class="form-control" type="text" />
             </div>
 
         </div>
@@ -67,13 +67,13 @@
         <div class="row">
             <h4>Situação de Rua</h4>
             <div class="col-md-6">
-                <label  asp-for="TempoPermanenciaRua" class="form-label">Tempo de permanência em situação de rua</label>
+                <label asp-for="TempoPermanenciaRua" class="form-label">Tempo de permanência em situação de rua</label>
                 <input asp-for="TempoPermanenciaRua" class="form-control" type="text" />
             </div>
 
             <div class="col-md-6">
                 <label asp-for="MotivoSituacaoRua" cclass="form-label">Motivo da situação de rua (se souber)</label>
-                <input asp-for="MotivoSituacaoRua"class="form-control" type="text" />
+                <input asp-for="MotivoSituacaoRua" class="form-control" type="text" />
             </div>
 
         </div>
@@ -82,12 +82,12 @@
             <h4>Renda e trabalho</em></h4>
             <div class="col-md-6">
                 <label asp-for="Renda" class="form-label">Renda de cada membro da família (mesmo que informal)</label>
-                <input  asp-for="Renda" class="form-control" type="text" />
+                <input asp-for="Renda" class="form-control" type="text" />
             </div>
 
             <div class="col-md-6">
-                <label asp-for="Profissao"  class="form-label">Profissão</label>
-                <input asp-for="Profissao"class="form-control" type="text" />
+                <label asp-for="Profissao" class="form-label">Profissão</label>
+                <input asp-for="Profissao" class="form-control" type="text" />
             </div>
 
             <div class="col-md-6">
@@ -95,9 +95,26 @@
                 <input asp-for="ProgramaSocial" class="form-control" type="text" />
             </div>
         </div>
-
+        <div class="col-md-6">
+            <label for="Necessidade" lass="form-label">O que está procurando?</label>
+            <select c class="form-control" name="Necessidade" required>
+                <option class="form-control" value="Comida">Comida</option>
+                <option class="form-control" value="Abrigo">Abrigo</option>
+                <option vclass="form-control" alue="Roupas">Roupas</option>
+                <option class="form-control" value="Atendimento médico">Atendimento médico</option>
+            </select>
+        </div>
+        <input type="hidden" name="Latitude" id="Latitude" />
+        <input type="hidden" name="Longitude" id="Longitude" />
 
         <br /><br />
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
 </div>
+<script>
+    // Captura a geolocalização atual do navegador
+    navigator.geolocation.getCurrentPosition(function (position) {
+        document.getElementById('Latitude').value = position.coords.latitude;
+        document.getElementById('Longitude').value = position.coords.longitude;
+    });
+</script>
