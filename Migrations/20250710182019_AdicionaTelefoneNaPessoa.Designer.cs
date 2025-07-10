@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConexaoSolidaria.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250706200320_TornarNomeOpcional")]
-    partial class TornarNomeOpcional
+    [Migration("20250710182019_AdicionaTelefoneNaPessoa")]
+    partial class AdicionaTelefoneNaPessoa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace ConexaoSolidaria.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
 
-            modelBuilder.Entity("ConexaoSolidaria.Models.Usuario", b =>
+            modelBuilder.Entity("ConexaoSolidaria.Models.Pessoa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,6 +35,9 @@ namespace ConexaoSolidaria.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Foto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MotivoSituacaoRua")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeCompleto")
@@ -64,9 +67,12 @@ namespace ConexaoSolidaria.Migrations
                     b.Property<string>("TelefoneFixo")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("TempoPermanenciaRua")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Pessoas");
                 });
 #pragma warning restore 612, 618
         }

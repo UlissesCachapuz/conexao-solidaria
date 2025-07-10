@@ -1,10 +1,10 @@
-@model List<Usuario>
+@model List<Pessoa>
 @{
     ViewData["Title"] = "Lista de moradores cadastrados";
 }
 <h1>@ViewData["Title"]</h1>
 
-<a asp-controller="Usuario" asp-action="CadastrarMoradorRua" class="btn btn-primary">
+<a asp-controller="Pessoa" asp-action="CadastrarPessoa" class="btn btn-primary">
     Cadastrar novo
 </a>
 <br /><br />
@@ -12,6 +12,7 @@
     <thead>
 
         <tr>
+            <th>Id</th>
             <th>Nome</th>
             <th>Data nascimento</th>
             <th>Telefone</th>
@@ -23,13 +24,14 @@
         @foreach (var u in Model)
         {
             <tr>
+                <td>@u.Id</td>
                 <td>@u.NomeCompleto</td>
                 <td>@u.DataNascimento</td>
                 <td>@u.TelefoneCelular</td>
-                <td><a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@u.Id" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">
+                <td><a asp-controller="Pessoa" asp-action="Excluir" asp-route-id="@u.Id" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">
                         Excluir
                     </a></td>
-                <td><a asp-controller="Usuario" asp-action="Editar" asp-route-id="@u.Id" class="btn btn-warning">
+                <td><a asp-controller="Pessoa" asp-action="Editar" asp-route-id="@u.Id" class="btn btn-warning">
                         Editar
                     </a></td>
             </tr>

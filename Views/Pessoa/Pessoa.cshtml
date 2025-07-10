@@ -1,0 +1,103 @@
+@model Pessoa
+@{
+    ViewData["Title"] = "Pessoa Situacao Rua";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="container">
+
+    <form asp-action="CadastrarPessoa" method="post">
+        <input asp-for="Id" class="form-control" type="hidden" />
+        <div class="row">
+            <h4>Dados pessoais</h4>
+            <div class="col-md-6">
+                <label asp-for="NomeCompleto"  class="form-label">Nome completo </label>
+                <input asp-for="NomeCompleto" class="form-control" type="text" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="DataNascimento" class="form-label">Data de nascimento </label>
+                <input asp-for="DataNascimento" class="form-control" type="date" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="CPF" class="form-label">CPF </label>
+                <input asp-for="CPF" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="RG" class="form-label">RG</label>
+                <input asp-for="RG" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="TelefoneFixo" class="form-label">Telefone fixo </label>
+                <input asp-for="TelefoneFixo" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="TelefoneCelular" class="form-label">Celular</label>
+                <input asp-for="TelefoneCelular" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="NomeMae" class="form-label">Nome mae</label>
+                <input  asp-for="NomeMae" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label  asp-for="Foto" class="form-label">Foto</label>
+                <input asp-for="Foto" class="form-control" type="file" />
+            </div>
+
+        </div>
+        <br /><br />
+        <div class="row">
+            <h4>Compisição familiar</h4>
+            <div class="col-md-6">
+                <label asp-for="NumeroPessoasFamilia" class="form-label">Número de pessoas na família</label>
+                <input asp-for="NumeroPessoasFamilia" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="EnderecoReferencia" class="form-label">Endereço de referencia</label>
+                <input  asp-for="EnderecoReferencia" class="form-control" type="text" />
+            </div>
+
+        </div>
+        <br /><br />
+        <div class="row">
+            <h4>Situação de Rua</h4>
+            <div class="col-md-6">
+                <label  asp-for="TempoPermanenciaRua" class="form-label">Tempo de permanência em situação de rua</label>
+                <input asp-for="TempoPermanenciaRua" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="MotivoSituacaoRua" cclass="form-label">Motivo da situação de rua (se souber)</label>
+                <input asp-for="MotivoSituacaoRua"class="form-control" type="text" />
+            </div>
+
+        </div>
+        <br /><br />
+        <div class="row">
+            <h4>Renda e trabalho</em></h4>
+            <div class="col-md-6">
+                <label asp-for="Renda" class="form-label">Renda de cada membro da família (mesmo que informal)</label>
+                <input  asp-for="Renda" class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Profissao"  class="form-label">Profissão</label>
+                <input asp-for="Profissao"class="form-control" type="text" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="ProgramaSocial" class="form-label">Participação em programas sociais</label>
+                <input asp-for="ProgramaSocial" class="form-control" type="text" />
+            </div>
+        </div>
+
+
+        <br /><br />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>

@@ -10,6 +10,6 @@ namespace ConexaoSolidaria.Data
     {
     }
 
-    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Pessoa> Pessoas { get; set; }
 }
 }

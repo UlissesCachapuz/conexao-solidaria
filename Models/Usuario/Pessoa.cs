@@ -1,6 +1,6 @@
 namespace ConexaoSolidaria.Models
 {
-    public class Usuario
+    public class Pessoa
     {
         public int Id { get; set; }
         public string? NomeCompleto { get; set; }
@@ -16,5 +16,8 @@ namespace ConexaoSolidaria.Models
         public string? Renda { get; set; }
         public string? Profissao { get; set; }
         public string? ProgramaSocial { get; set; }
+        public string? TempoPermanenciaRua { get; set; }
+
+        public string? MotivoSituacaoRua { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConexaoSolidaria.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250706192753_InitialCreate")]
+    [Migration("20250710173740_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,67 +19,54 @@ namespace ConexaoSolidaria.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
 
-            modelBuilder.Entity("ConexaoSolidaria.Models.Usuario", b =>
+            modelBuilder.Entity("ConexaoSolidaria.Models.Pessoa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CPF")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataNascimento")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EnderecoReferencia")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Foto")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeCompleto")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeMae")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NumeroPessoasFamilia")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Profissao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProgramaSocial")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RG")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Renda")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelefoneCelular")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelefoneFixo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Pessoas");
                 });
 #pragma warning restore 612, 618
         }
