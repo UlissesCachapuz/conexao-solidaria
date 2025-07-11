@@ -1,0 +1,40 @@
+@model List<PontoApoio>
+@{
+    ViewData["Title"] = "Lista de pontos de apoio cadastrados";
+}
+<h1>@ViewData["Title"]</h1>
+
+<a asp-controller="PontoApoio" asp-action="CadastrarPontoApoio" class="btn btn-primary">
+    Cadastrar novo
+</a>
+<br /><br />
+<table class="table table-bordered">
+    <thead>
+
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Data nascimento</th>
+            <th>Telefone</th>
+            <th>Excluir</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Nome</td>
+                <td>@u.Tipo</td>
+                <td>@u.CEP</td>
+                <td><a asp-controller="PontoApoio" asp-action="Excluir" asp-route-id="@u.Id" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir?');">
+                        Excluir
+                    </a></td>
+                <td><a asp-controller="PontoApoio" asp-action="Editar" asp-route-id="@u.Id" class="btn btn-warning">
+                        Editar
+                    </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
