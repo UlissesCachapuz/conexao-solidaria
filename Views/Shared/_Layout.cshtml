@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Pessoa" asp-action="Pessoas">Conexão solidária</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Conexão solidária</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,37 +26,12 @@
                                 asp-action="Pessoas">Pessoa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PontoApoio" asp-action="PontoApoio">Ponto de apoio</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PontoApoio" asp-action="PontosApoio">Ponto de apoio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Canal
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ajuda">Canal
                                 de ajuda</a>
-                        </li>
-
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Morador de rua
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Pessoa" asp-action="Index">Listar</a></li>
-                                <li><a class="dropdown-item" asp-controller="Pessoa" asp-action="Create">Cadastrar</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Produtos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Produto" asp-action="Index">Listar</a></li>
-                                <li><a class="dropdown-item" asp-controller="Produto" asp-action="Create">Cadastrar</a>
-                                </li>
-                            </ul>
-                        </li>
+                        </li> 
 
                     </ul>
                 </div>
