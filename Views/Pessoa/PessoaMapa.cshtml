@@ -13,9 +13,9 @@
 
 <script>
     // Coordenadas fixas próximas (Praça Sete -> Rodoviária BH)
-    var origem = [-19.918802, -43.937834];
-    var destino = [-19.920210, -43.937477];
-
+    var origem = [parseFloat("@ViewBag.OrigemLat"), parseFloat("@ViewBag.OrigemLng")];
+    var destino = [parseFloat("@ViewBag.DestinoLat"), parseFloat("@ViewBag.DestinoLng")]; 
+    
     console.log("Origem:", origem);
     console.log("Destino:", destino);
 
