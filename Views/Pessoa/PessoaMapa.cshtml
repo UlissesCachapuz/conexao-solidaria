@@ -1,70 +1,41 @@
-@{
-    ViewBag.Title = "Mapa com Rota Simulada";
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rota entre dois pontos</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- CSS do Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
-<h2>Simulação de rota a pé</h2>
-<div id="map" style="height: 500px;"></div>
+  <!-- OpenRouteService -->
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
 
-<!-- JS do Leaflet -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<div id="map" style="height: 600px;"></div>
 
 <script>
-    // Coordenadas fixas próximas (Praça Sete -> Rodoviária BH)
-    var origem = [parseFloat("@ViewBag.OrigemLat"), parseFloat("@ViewBag.OrigemLng")];
-    var destino = [parseFloat("@ViewBag.DestinoLat"), parseFloat("@ViewBag.DestinoLng")]; 
-    
-    console.log("Origem:", origem);//-19.9852032//-44.0270848
-    console.log("Destino:", destino);
+  const map = L.map('map').setView([ViewBag.OrigemLat, ViewBag.OrigemLng ], 13); 
 
-    // Inicializa mapa
-    var map = L.map('map').setView(origem, 16);
+  // Adiciona mapa base
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    // Marcadores
-    L.marker(origem).addTo(map).bindPopup("Origem: Praça Sete").openPopup();
-    L.marker(destino).addTo(map).bindPopup("Destino: Rodoviária");
-
-    // Chave da OpenRouteService (substitua pela sua)
-    var apiKey = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImRjZjJhZWY2MTI3ODRiZTA5ZWZjMmViNTc4MWU4ODZlIiwiaCI6Im11cm11cjY0In0='; // crie uma em https://openrouteservice.org/dev/#/signup
-
-    // Chamada à API para traçar a rota
-    fetch("https://api.openrouteservice.org/v2/directions/foot-walking", {
-        method: 'POST',
-        headers: {
-            'Authorization': apiKey,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            coordinates: [
-                [origem[1], origem[0]], // lng, lat
-                [destino[1], destino[0]]
-            ]
-        })
-    })
-    .then(response => {
-        console.log("Status da resposta:", response.status);
-        return response.json();
-    })
-    .then(data => {
-        console.log("Resposta da rota:", data);
-
-        if (!data.features || !data.features.length) {
-            alert("Não foi possível traçar a rota.");
-            return;
-        }
-
-        var coords = data.features[0].geometry.coordinates.map(c => [c[1], c[0]]);
-        L.polyline(coords, { color: 'blue' }).addTo(map);
-    })
-    .catch(error => {
-        console.error("Erro ao buscar rota:", error);
-        alert("Erro ao buscar rota. Veja o console.");
-    });
+  // Adiciona rota
+  L.Routing.control({
+    waypoints: [
+      L.latLng(ViewBag.DestinoLat , ViewBag.DestinoLng),  
+      L.latLng(ViewBag.OrigemLat, ViewBag.OrigemLng)  // ponto B (próximo)
+    ],
+    routeWhileDragging: true,
+    createMarker: function (i, wp) {
+      return L.marker(wp.latLng).bindPopup(`Ponto ${i + 1}`);
+    }
+  }).addTo(map);
 </script>
+
+</body>
+</html>
